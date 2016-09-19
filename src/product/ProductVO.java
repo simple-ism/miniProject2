@@ -3,14 +3,14 @@ package product;
 import java.util.Date;
 
 public class ProductVO {
-	private int p_no;
-	private int p_price; 
-	private String p_name; 
-	private String p_detail;
-	private Date p_reg_date;
-	private String p_ori; 
-	private String p_real; 
-	private String p_path;
+	private int pNo;
+	private int pPrice; 
+	private String pName; 
+	private String pDetail;
+	private Date pRegDate;
+	private String pOri; 
+	private String pReal; 
+	private String pPath;
 	
 	
 	public int getP_no() {
