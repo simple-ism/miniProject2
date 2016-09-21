@@ -2,10 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product.ProductDAO">
-	<select id="selectLowPrice">
-		select p_no as pNo, p_price as pPrice, p_name as pName, p_detail as pDetail, p_reg_date as pRegDate, p_ori as pOri, p_real as pReal, p_path as pPath
+	<resultMap type="pvo" id="productMap">
+		<collection property="pNo" column="p_no"/>	
+		<collection property="pPrice" column="p_price"/>	
+		<collection property="pName" column="p_name"/>	
+		<collection property="pDetail" column="p_detail"/>	
+		<collection property="pRegDate" column="p_reg_date"/>	
+		<collection property="pOri" column="p_ori"/>
+		<collection property="pReal" column="p_real"/>	
+		<collection property="pPath" column="p_path"/>	
+	
+	
+	
+	</resultMap>
+	<select id="selectLowPrice" parameterType="int" resultMap="productMap">
+		select p_no, p_price, p_name, p_detail, p_reg_date, p_ori, p_real, p_path
 		from product 
-		where 
+		order by p_price desc
+		limit (#{page}-1)*8,8
+	</select>
+	<select id="selectHighPrice" parameterType="int" resultMap="productMap">
+		select p_no, p_price, p_name, p_detail, p_reg_date, p_ori, p_real, p_path
+		from product 
+		order by p_price 
+		limit (#{page}-1)*8,8
+	</select>
+	<select id="selectPName" parameterType="int" resultMap="productMap">
+		select p_no, p_price, p_name, p_detail, p_reg_date, p_ori, p_real, p_path
+		from product 
+		order by p_name 
+		limit (#{page}-1)*8,8
+	</select>
+	<select id="selectPRegDate" parameterType="int" resultMap="productMap">
+		select p_no, p_price, p_name, p_detail, p_reg_date, p_ori, p_real, p_path
+		from product 
+		order by p_reg_date desc
+		limit (#{page}-1)*8,8
 	</select>
 </mapper>
 
